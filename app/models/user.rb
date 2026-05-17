@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
-  has_many :exercises, dependent: :destroy
   has_many :training_records, dependent: :destroy
   has_many :training_sets, through: :training_records
+  has_many :exercises, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
 

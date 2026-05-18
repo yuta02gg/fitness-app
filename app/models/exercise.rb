@@ -2,7 +2,13 @@ class Exercise < ApplicationRecord
   belongs_to :user
   has_many :training_sets, dependent: :restrict_with_error
 
-  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { scope: :user_id }
+  validates :name,
+            presence: true,
+            length: { maximum: 50 },
+            uniqueness: {
+              scope: :user_id,
+              conditions: -> { where(active: true) }
+            }
   validates :body_part, presence: true, length: { maximum: 30 }
   validates :memo, length: { maximum: 500 }
   validates :active, inclusion: { in: [true, false] }

@@ -1,0 +1,35 @@
+<% if exercise.errors.any? %>
+  <div class="mb-6 rounded-lg bg-red-50 px-4 py-3 text-red-700">
+    <p class="font-semibold mb-2">入力内容を確認してください</p>
+    <ul class="list-disc pl-5">
+      <% exercise.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: exercise, local: true do |f| %>
+  <div class="mb-5">
+    <%= f.label :name, "種目名", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_field :name, placeholder: "例：ベンチプレス", class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="mb-5">
+    <%= f.label :body_part, "部位", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.select :body_part,
+                 [["胸", "胸"], ["背中", "背中"], ["肩", "肩"], ["腕", "腕"], ["脚", "脚"], ["腹", "腹"], ["その他", "その他"]],
+                 { prompt: "部位を選択してください" },
+                 class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="mb-6">
+    <%= f.label :memo, "メモ", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_area :memo, rows: 5, placeholder: "フォームや注意点などをメモできます", class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" %>
+  </div>
+
+  <div class="flex gap-3">
+    <%= f.submit submit_text, class: "rounded-lg bg-emerald-600 px-5 py-2 text-white font-semibold hover:bg-emerald-700" %>
+    <%= link_to "キャンセル", exercises_path, class: "rounded-lg border border-gray-300 px-5 py-2 text-gray-700 font-semibold hover:bg-gray-50" %>
+  </div>
+<% end %>

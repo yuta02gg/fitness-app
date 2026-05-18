@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resource :mypage, only: [:show]
 
+  resources :exercises, except: [:show]
+
   namespace :users do
     post "guest_login", to: "guest_sessions#create"
   end

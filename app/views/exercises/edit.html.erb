@@ -1,0 +1,15 @@
+<div class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-gray-800">種目編集</h1>
+
+      <%= link_to "種目一覧へ", exercises_path, class: "text-sm text-gray-600 hover:text-gray-900" %>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-2xl shadow p-6">
+      <%= render "form", exercise: @exercise, submit_text: "更新する" %>
+    </div>
+  </main>
+</div>

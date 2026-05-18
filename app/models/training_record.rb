@@ -6,5 +6,5 @@ class TrainingRecord < ApplicationRecord
   validates :trained_on, presence: true, uniqueness: { scope: :user_id }
   validates :memo, length: { maximum: 1000 }
 
-  accepts_nested_attributes_for :training_sets, allow_destroy: true
+  accepts_nested_attributes_for :training_sets, allow_destroy: true, reject_if: :all_blank
 end

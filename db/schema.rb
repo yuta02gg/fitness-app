@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_05_17_123619) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_18_064719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_17_123619) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "name"], name: "index_exercises_on_user_id_and_name", unique: true
+    t.index ["user_id", "name"], name: "index_active_exercises_on_user_id_and_name", unique: true, where: "(active = true)"
     t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 

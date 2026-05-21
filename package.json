@@ -1,6 +1,9 @@
 {
+  "name": "fitness-app",
+  "private": true,
   "scripts": {
-    "build": "echo 'No JavaScript build step required'"
+    "build": "echo 'No JavaScript build step required'",
+    "build:css": "echo 'No CSS build step required'"
   },
   "dependencies": {}
 }

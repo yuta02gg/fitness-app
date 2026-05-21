@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "echo 'No JavaScript build step required'"
+  },
+  "dependencies": {}
+}

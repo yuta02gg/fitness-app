@@ -13,6 +13,22 @@
   </head>
 
   <body class="bg-gray-50 text-gray-900">
+    <% if notice.present? %>
+      <div class="mx-auto mt-4 max-w-4xl px-4">
+        <div class="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+          <%= notice %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if alert.present? && !(devise_controller? && controller_name == "sessions") %>
+      <div class="mx-auto mt-4 max-w-4xl px-4">
+        <div class="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <%= alert %>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

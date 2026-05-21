@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-gray-800">トレーニング記録詳細</h1>
+
+      <div class="flex items-center gap-4">
+        <%= link_to "一覧へ", training_records_path, class: "text-sm text-gray-600 hover:text-gray-900" %>
+        <%= link_to "編集", edit_training_record_path(@training_record), class: "rounded-lg bg-emerald-600 px-4 py-2 text-white text-sm font-semibold hover:bg-emerald-700" %>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-2xl shadow p-6 mb-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+        <%= @training_record.trained_on.strftime("%Y年%m月%d日") %>
+      </h2>
+
+      <% if @training_record.memo.present? %>
+        <p class="text-gray-600 whitespace-pre-wrap"><%= @training_record.memo %></p>
+      <% else %>
+        <p class="text-gray-400">メモはありません</p>
+      <% end %>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow p-6">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">セット内容</h3>
+
+      <% if @training_record.training_sets.present? %>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b text-left text-gray-500">
+                <th class="py-2">種目</th>
+                <th class="py-2">セット</th>
+                <th class="py-2">重量</th>
+                <th class="py-2">回数</th>
+                <th class="py-2">メモ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @training_record.training_sets.order(:set_number).each do |training_set| %>
+                <tr class="border-b last:border-b-0">
+                  <td class="py-2"><%= training_set.exercise.name %></td>
+                  <td class="py-2"><%= training_set.set_number %>セット目</td>
+                  <td class="py-2"><%= training_set.weight %>kg</td>
+                  <td class="py-2"><%= training_set.reps %>回</td>
+                  <td class="py-2"><%= training_set.memo.presence || "-" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-gray-600">セット内容は登録されていません。</p>
+      <% end %>
+    </div>
+  </main>
+</div>

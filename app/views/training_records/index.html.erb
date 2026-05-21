@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-gray-800">トレーニング記録一覧</h1>
+
+      <div class="flex items-center gap-4">
+        <%= link_to "マイページ", mypage_path, class: "text-sm text-gray-600 hover:text-gray-900" %>
+        <%= link_to "記録を登録", new_training_record_path, class: "rounded-lg bg-emerald-600 px-4 py-2 text-white text-sm font-semibold hover:bg-emerald-700" %>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    <% if @training_records.present? %>
+      <div class="space-y-6">
+        <% @training_records.each do |training_record| %>
+          <div class="bg-white rounded-2xl shadow p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="text-lg font-bold text-gray-800">
+                  <%= training_record.trained_on.strftime("%Y年%m月%d日") %>
+                </h2>
+                <p class="mt-1 text-sm text-gray-500">
+                  セット数：<%= training_record.training_sets.size %>
+                </p>
+              </div>
+
+              <div class="flex gap-2">
+                <%= link_to "詳細", training_record_path(training_record), class: "rounded-lg border border-gray-300 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50" %>
+                <%= link_to "編集", edit_training_record_path(training_record), class: "rounded-lg border border-gray-300 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50" %>
+                <%= button_to "削除", training_record_path(training_record), method: :delete, data: { turbo_confirm: "この記録を削除しますか？" }, class: "rounded-lg border border-red-300 px-3 py-1 text-sm text-red-600 hover:bg-red-50" %>
+              </div>
+            </div>
+
+            <% if training_record.memo.present? %>
+              <p class="mt-4 text-gray-600 whitespace-pre-wrap"><%= training_record.memo %></p>
+            <% end %>
+
+            <% if training_record.training_sets.present? %>
+              <div class="mt-4 overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b text-left text-gray-500">
+                      <th class="py-2">種目</th>
+                      <th class="py-2">セット</th>
+                      <th class="py-2">重量</th>
+                      <th class="py-2">回数</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% training_record.training_sets.each do |training_set| %>
+                      <tr class="border-b last:border-b-0">
+                        <td class="py-2"><%= training_set.exercise.name %></td>
+                        <td class="py-2"><%= training_set.set_number %>セット目</td>
+                        <td class="py-2"><%= training_set.weight %>kg</td>
+                        <td class="py-2"><%= training_set.reps %>回</td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="bg-white rounded-2xl shadow p-8 text-center">
+        <p class="text-gray-600 mb-4">トレーニング記録はまだありません。</p>
+        <%= link_to "最初の記録を登録する", new_training_record_path, class: "inline-block rounded-lg bg-emerald-600 px-5 py-2 text-white font-semibold hover:bg-emerald-700" %>
+      </div>
+    <% end %>
+  </main>
+</div>

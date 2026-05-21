@@ -1,0 +1,57 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+      exercise:
+        name: 種目名
+        body_part: 部位
+        memo: メモ
+      training_record:
+        trained_on: 日付
+        memo: メモ
+      training_set:
+        exercise: 種目
+        weight: 重量
+        reps: 回数
+        set_number: セット数
+        memo: メモ
+
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"
+      taken: "はすでに使用されています"
+      too_short: "は%{count}文字以上で入力してください"
+      confirmation: "と確認用の入力が一致しません"
+      required: "を入力してください"
+      not_a_number: "は数値で入力してください"
+      greater_than: "は%{count}より大きい値にしてください"
+      greater_than_or_equal_to: "は%{count}以上の値にしてください"
+      less_than_or_equal_to: "は%{count}以下の値にしてください"
+
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+      submit: 保存する
+
+  devise:
+    failure:
+      invalid: "%{authentication_keys}またはパスワードが違います"
+      unauthenticated: "ログインしてください"
+      not_found_in_database: "%{authentication_keys}またはパスワードが違います"
+      already_authenticated: "すでにログインしています"
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      already_signed_out: "すでにログアウトしています"
+    registrations:
+      signed_up: "アカウント登録が完了しました"
+      updated: "アカウント情報を更新しました"
+      destroyed: "アカウントを削除しました"
+    passwords:
+      send_instructions: "パスワード再設定の案内を送信しました"

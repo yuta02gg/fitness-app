@@ -184,3 +184,12 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
+```
+
+## テスト
+
+主要機能について、手動で動作確認を行いました。
+
+確認項目は以下にまとめています。
+
+[テストケース](docs/test_cases.md)
